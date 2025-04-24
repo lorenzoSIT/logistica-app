@@ -1,6 +1,6 @@
 // app/api/auth/login/route.js
 import { NextResponse } from 'next/server';
-import { findUserByUsername, verifyPassword, generateToken } from '@/lib/auth';
+import { findUserByUsername, verifyPassword, generateToken } from '../../../../lib/auth.js';
 import { serialize } from 'cookie';
 
 export async function POST(request) {
@@ -41,7 +41,7 @@ export async function POST(request) {
     // Imposta il cookie
     const cookie = serialize('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // true in produzione, false in development
+      secure: process.env.NODE_ENV === 'production', // true in produzione, false in dev
       sameSite: 'lax', // Meno restrittivo di 'strict'
       maxAge: 86400, // 1 giorno in secondi
       path: '/',

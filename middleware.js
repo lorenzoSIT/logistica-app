@@ -1,6 +1,16 @@
 // middleware.js
 import { NextResponse } from 'next/server';
 import * as jose from 'jose';
+import * as dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// Ottieni il percorso corrente per ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Carica le variabili d'ambiente
+dotenv.config({ path: join(__dirname, '.env.local') });
 
 // JWT secret key
 const JWT_SECRET = new TextEncoder().encode(
